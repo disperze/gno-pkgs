@@ -8,7 +8,7 @@ package grc20
 import (
 	"github.com/gnolang/gno/stdlibs/stdshim"
 
-	"gno.tools/p/demo/grc/exts"
+	"gno.land/p/demo/grc/exts"
 )
 
 type IGRC20 interface {

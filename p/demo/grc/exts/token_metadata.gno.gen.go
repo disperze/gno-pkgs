@@ -3,7 +3,7 @@
 //go:build gno
 // +build gno
 
-package exts // import "gno.tools/p/demo/grc/exts"
+package exts // import "gno.land/p/demo/grc/exts"
 
 type TokenMetadata interface {
 	// Returns the name of the token.
