@@ -1,4 +1,4 @@
-module gno.land
+module gno.tools
 
 go 1.19
 

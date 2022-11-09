@@ -7,7 +7,7 @@
 package test
 
 import (
-	"gno.land/p/demo/avl"
+	"gno.tools/p/demo/avl"
 )
 
 var tree *avl.Tree

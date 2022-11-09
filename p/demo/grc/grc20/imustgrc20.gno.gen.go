@@ -8,7 +8,7 @@ package grc20
 import (
 	"github.com/gnolang/gno/stdlibs/stdshim"
 
-	"gno.land/p/demo/grc/exts"
+	"gno.tools/p/demo/grc/exts"
 )
 
 // IMustGRC20 is like IGRC20 but without returned errors.

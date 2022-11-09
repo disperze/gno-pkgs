@@ -8,8 +8,8 @@ package grc20
 import (
 	"github.com/gnolang/gno/stdlibs/stdshim"
 
-	"gno.land/p/demo/avl"
-	"gno.land/p/demo/ufmt"
+	"gno.tools/p/demo/avl"
+	"gno.tools/p/demo/ufmt"
 )
 
 // AdminToken implements a token factory with admin helpers.
