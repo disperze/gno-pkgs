@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gnolang/gno/examples/gno.land/p/demo/avl"
+	"gno.tools/p/demo/avl"
 )
 
 //----------------------------------------
