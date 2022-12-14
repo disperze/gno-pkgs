@@ -17,62 +17,96 @@ type contextI interface {
 	IsOriginCall() bool
 }
 
-var ctx contextI = defContext{}
+var df = &defContext{
+	chainId:   "dev",
+	height:    1,
+	timestamp: 1671041345,
+	callerAt:  make(map[int]Address),
+}
+
+var ctx contextI = df
 
 type defContext struct {
+	chainId       string
+	height        int64
+	timestamp     int64
+	origCaller    Address
+	origPkgAddr   Address
+	origSend      Coins
+	origSendSpent *Coins
+	banker        Banker
+	realmPath     string
+	callerAt      map[int]Address
+	originCall    bool
 }
 
 // GetBanker implements contextI
-func (defContext) GetBanker() Banker {
-	panic(shimWarn)
+func (d defContext) GetBanker() Banker {
+	return d.banker
 }
 
 // GetChainID implements contextI
-func (defContext) GetChainID() string {
-	panic(shimWarn)
+func (d defContext) GetChainID() string {
+	return d.chainId
 }
 
 // GetHeight implements contextI
-func (defContext) GetHeight() int64 {
-	panic(shimWarn)
+func (d defContext) GetHeight() int64 {
+	return d.height
 }
 
 // GetOrigCaller implements contextI
-func (defContext) GetOrigCaller() Address {
-	panic(shimWarn)
+func (d defContext) GetOrigCaller() Address {
+	if d.origCaller == "" {
+		panic(shimWarn)
+	}
+	return d.origCaller
 }
 
 // GetOrigPkgAddr implements contextI
-func (defContext) GetOrigPkgAddr() Address {
-	panic(shimWarn)
+func (d defContext) GetOrigPkgAddr() Address {
+	if d.origPkgAddr == "" {
+		panic(shimWarn)
+	}
+	return d.origPkgAddr
 }
 
 // GetOrigSend implements contextI
-func (defContext) GetOrigSend() Coins {
-	panic(shimWarn)
+func (d defContext) GetOrigSend() Coins {
+	return d.origSend
 }
 
 // GetOrigSendSpent implements contextI
-func (defContext) GetOrigSendSpent() *Coins {
-	panic(shimWarn)
+func (d defContext) GetOrigSendSpent() *Coins {
+	return d.origSendSpent
 }
 
 // GetTimestamp implements contextI
-func (defContext) GetTimestamp() int64 {
-	panic(shimWarn)
+func (d defContext) GetTimestamp() int64 {
+	return d.timestamp
 }
 
 // GetRealmPath implements contextI
-func (defContext) GetRealmPath() string {
-	panic(shimWarn)
+func (d defContext) GetRealmPath() string {
+	if d.realmPath == "" {
+		panic(shimWarn)
+	}
+	return d.realmPath
 }
 
 // GetCallerAt implements contextI
-func (defContext) GetCallerAt(n int) Address {
+func (d defContext) GetCallerAt(n int) Address {
+	if n < 0 {
+		panic("negative caller index")
+	}
+
+	if caller, ok := d.callerAt[n]; ok {
+		return caller
+	}
 	panic(shimWarn)
 }
 
 // IsOriginCall implements contextI
-func (defContext) IsOriginCall() bool {
-	panic(shimWarn)
+func (d defContext) IsOriginCall() bool {
+	return d.originCall
 }
