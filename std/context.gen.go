@@ -105,6 +105,10 @@ func (d defContext) GetCallerAt(n int) Address {
 		panic("negative caller index")
 	}
 
+	if caller, ok := d.callerAt[n]; ok {
+		return caller
+	}
+
 	pc, _, _, _ := runtime.Caller(2)
 	funcName := runtime.FuncForPC(pc).Name()
 	origPkg := d.getPkgName(funcName)
@@ -112,9 +116,6 @@ func (d defContext) GetCallerAt(n int) Address {
 		return caller
 	}
 
-	if caller, ok := d.callerAt[n]; ok {
-		return caller
-	}
 	panic(shimWarn)
 }
 
