@@ -1,7 +1,10 @@
 package std
 
-// defContext is not exposed,
-// use native injections std.GetChainID(), std.GetHeight() etc instead.
+import (
+	"fmt"
+	"runtime"
+	"strings"
+)
 
 type contextI interface {
 	GetChainID() string
@@ -37,6 +40,7 @@ type defContext struct {
 	banker        Banker
 	realmPath     string
 	callerAt      map[int]Address
+	callerPkgAt   map[string]Address
 	originCall    bool
 }
 
@@ -100,6 +104,13 @@ func (d defContext) GetCallerAt(n int) Address {
 		panic("negative caller index")
 	}
 
+	pc, _, _, _ := runtime.Caller(2)
+	funcName := runtime.FuncForPC(pc).Name()
+	origPkg := d.getPkgName(funcName)
+	if caller, ok := d.callerPkgAt[fmt.Sprintf("%s-%d", origPkg, n)]; ok {
+		return caller
+	}
+
 	if caller, ok := d.callerAt[n]; ok {
 		return caller
 	}
@@ -109,4 +120,13 @@ func (d defContext) GetCallerAt(n int) Address {
 // IsOriginCall implements contextI
 func (d defContext) IsOriginCall() bool {
 	return d.originCall
+}
+
+func (defContext) getPkgName(funcName string) string {
+	lastSlash := strings.LastIndexByte(funcName, '/')
+	if lastSlash < 0 {
+		lastSlash = 0
+	}
+	lastDot := strings.LastIndexByte(funcName[lastSlash:], '.') + lastSlash
+	return funcName[:lastDot]
 }

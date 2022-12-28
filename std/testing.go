@@ -3,12 +3,18 @@
 
 package std
 
+import "fmt"
+
 func TestSetContext(c contextI) {
 	ctx = c
 }
 
 func TestSetCallerAt(n int, addr Address) {
 	df.callerAt[n] = addr
+}
+
+func TestSetPkgCaller(pkg string, n int, addr Address) {
+	df.callerPkgAt[fmt.Sprintf("%s-%d", pkg, n)] = addr
 }
 
 func TestSetChainID(id string) {
