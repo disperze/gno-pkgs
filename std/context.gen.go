@@ -21,10 +21,11 @@ type contextI interface {
 }
 
 var df = &defContext{
-	chainId:   "dev",
-	height:    1,
-	timestamp: 1671041345,
-	callerAt:  make(map[int]Address),
+	chainId:     "dev",
+	height:      1,
+	timestamp:   1671041345,
+	callerAt:    make(map[int]Address),
+	callerPkgAt: make(map[string]Address),
 }
 
 var ctx contextI = df
