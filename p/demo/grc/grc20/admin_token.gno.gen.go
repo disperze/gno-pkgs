@@ -6,7 +6,7 @@
 package grc20
 
 import (
-	"github.com/gnolang/gno/stdlibs/stdshim"
+	"gno.tools/std"
 
 	"gno.tools/p/demo/avl"
 	"gno.tools/p/demo/ufmt"

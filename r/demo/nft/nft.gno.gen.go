@@ -6,7 +6,8 @@
 package nft
 
 import (
-	"github.com/gnolang/gno/stdlibs/stdshim"
+	"gno.tools/std"
+	
 	"strconv"
 
 	"gno.tools/p/demo/avl"
