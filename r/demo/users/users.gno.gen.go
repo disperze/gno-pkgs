@@ -6,7 +6,8 @@
 package users
 
 import (
-	"github.com/gnolang/gno/stdlibs/stdshim"
+	"gno.tools/std"
+	
 	"regexp"
 	"strconv"
 	"strings"

@@ -5,7 +5,7 @@
 
 package grc20
 
-import "github.com/gnolang/gno/stdlibs/stdshim"
+import "gno.tools/std"
 
 func Mustify(original IGRC20) IMustGRC20 {
 	return &mustGRC20{original: original}

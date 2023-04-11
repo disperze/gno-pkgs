@@ -5,7 +5,7 @@
 
 package grc20
 
-import "github.com/gnolang/gno/stdlibs/stdshim"
+import "gno.tools/std" 
 
 const zeroAddress = std.Address("")
 

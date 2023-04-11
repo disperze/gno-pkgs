@@ -6,8 +6,8 @@ package std
 import (
 	"time"
 
-	"github.com/gnolang/gno/pkgs/bech32"
-	gno "github.com/gnolang/gno/pkgs/gnolang"
+	gno "github.com/gnolang/gno/gnovm/pkg/gnolang"
+	"github.com/gnolang/gno/tm2/pkg/bech32"
 )
 
 const shimWarn = "stdshim cannot be used to run code"

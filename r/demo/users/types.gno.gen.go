@@ -5,7 +5,7 @@
 
 package users
 
-import "github.com/gnolang/gno/stdlibs/stdshim"
+import "gno.tools/std" 
 
 type AddressOrName string
 

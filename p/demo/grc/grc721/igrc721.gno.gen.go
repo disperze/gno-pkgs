@@ -5,7 +5,7 @@
 
 package grc721
 
-import "github.com/gnolang/gno/stdlibs/stdshim"
+import "gno.tools/std"
 
 type IGRC721 interface {
 	BalanceOf(owner std.Address) (count int64)
